@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MusicModel
 {
-	public class csMusicGroup
+	public class csMusicGroup : ISeed<csMusicGroup>
 	{
 		public string Name { get; set; }
 		public int EstablishedYear { get; set; }
