@@ -3,31 +3,26 @@ using System.Collections.Generic;
 
 namespace MusicModel
 {
-	public class csAlbum
+	public class csAlbum : ISeed<csAlbum>
 	{
         public string Name { get; set; }
 		public int ReleaseYear { get; set; }
 
-        public csAlbum()
-		{
-		}
+    
+        #region Random Seeding
+        public bool Seeded { get; set; } = false;
 
-        public static class Factory
+        public csAlbum Seed(csSeedGenerator _seeder)
         {
-            public static csAlbum CreateRandom()
+            return new csAlbum
             {
-                var rnd = new csRandomData();
-
-                var _name = rnd.MusicBand;
-                var _releaseYear = rnd.Next(1970, 1990);
-
-                return new csAlbum
-                {
-                    Name = _name,
-                    ReleaseYear = _releaseYear
-                };
-            }
+                Name = _seeder.MusicAlbumName,
+                ReleaseYear = _seeder.Next(1970, 1990),
+    
+                Seeded = true
+            };
         }
+        #endregion
     }
 }
 

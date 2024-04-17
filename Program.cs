@@ -22,11 +22,13 @@ class Program
 
     private static List<csMusicGroup> SeedModel()
     {
+        var _seeder = new csSeedGenerator();
+
         //Create a list of 20 great bands
         var _greatMusicBands = new List<csMusicGroup>();
         for (int c = 0; c < 20; c++)
         {
-            _greatMusicBands.Add(csMusicGroup.Factory.CreateRandom());
+            _greatMusicBands.Add(new csMusicGroup().Seed(_seeder));
         }
 
         return _greatMusicBands;

@@ -3,31 +3,25 @@ using System.Collections.Generic;
 
 namespace MusicModel
 {
-	public class csArtist
+	public class csArtist : ISeed<csArtist>
 	{
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public csArtist()
-		{
-		}
+        #region Random Seeding
+        public bool Seeded { get; set; } = false;
 
-        public static class Factory
+        public csArtist Seed(csSeedGenerator _seeder)
         {
-            public static csArtist CreateRandom()
+            return new csArtist
             {
-                var rnd = new csRandomData();
-
-                var fn = rnd.FirstName;
-                var ln = rnd.LastName;
-
-                return new csArtist
-                {
-                    FirstName = fn,
-                    LastName = ln
-                };
-            }
+                FirstName = _seeder.FirstName,
+                LastName = _seeder.LastName,
+    
+                Seeded = true
+            };
         }
+        #endregion
     }
 }
 
